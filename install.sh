@@ -3,7 +3,7 @@
 # Zelda Qtile Theme Installer
 # This script installs a Zelda-themed configuration for Qtile window manager
 
-# Función para mostrar mensajes con colores
+# Function to display colored messages
 show_message() {
     local color=$1
     local message=$2
@@ -16,110 +16,110 @@ show_message() {
     esac
 }
 
-show_message "green" "=== Instalando Zelda Qtile Theme ==="
+show_message "green" "=== Installing Zelda Qtile Theme ==="
 
 # Create backup of original config
 BACKUP_DATE=$(date +"%Y%m%d%H%M%S")
 QTILE_CONFIG_DIR="$HOME/.config/qtile"
 
 if [ -d "$QTILE_CONFIG_DIR" ]; then
-    show_message "yellow" "Creando copia de seguridad de la configuración existente de Qtile..."
+    show_message "yellow" "Creating backup of existing Qtile configuration..."
     if cp -r "$QTILE_CONFIG_DIR" "${QTILE_CONFIG_DIR}_backup_${BACKUP_DATE}"; then
-        show_message "green" "✓ Copia de seguridad creada en ${QTILE_CONFIG_DIR}_backup_${BACKUP_DATE}"
+        show_message "green" "✓ Backup created at ${QTILE_CONFIG_DIR}_backup_${BACKUP_DATE}"
     else
-        show_message "red" "✗ Error al crear la copia de seguridad. Continuando de todos modos..."
+        show_message "red" "✗ Error creating backup. Continuing anyway..."
     fi
 fi
 
 # Create Qtile config directory if it doesn't exist
-show_message "yellow" "Verificando directorio de configuración de Qtile..."
+show_message "yellow" "Verifying Qtile config directory..."
 if mkdir -p "$QTILE_CONFIG_DIR"; then
-    show_message "green" "✓ Directorio de configuración listo"
+    show_message "green" "✓ Config directory ready"
 else
-    show_message "red" "✗ Error al crear el directorio de configuración"
+    show_message "red" "✗ Error creating config directory"
     exit 1
 fi
 
 # Verify config directory exists
 if [ ! -d "./config" ]; then
-    show_message "red" "✗ Error: No se encontró el directorio de configuración ./config"
+    show_message "red" "✗ Error: Config directory ./config not found"
     exit 1
 fi
 
 # Copy configuration files
-show_message "yellow" "Copiando archivos de configuración del tema Zelda..."
+show_message "yellow" "Copying Zelda theme configuration files..."
 if cp -r ./config/* "$QTILE_CONFIG_DIR/"; then
-    show_message "green" "✓ Archivos de configuración copiados correctamente"
+    show_message "green" "✓ Configuration files copied successfully"
 else
-    show_message "red" "✗ Error al copiar los archivos de configuración"
+    show_message "red" "✗ Error copying configuration files"
     exit 1
 fi
 
 # Ensure picom.conf has the right permissions and inform about optimizations
-show_message "yellow" "Configurando picom.conf optimizado para mejor rendimiento..."
+show_message "yellow" "Setting up optimized picom.conf for better performance..."
 if [ -f "$QTILE_CONFIG_DIR/picom.conf" ]; then
     if chmod 644 "$QTILE_CONFIG_DIR/picom.conf"; then
-        show_message "green" "✓ Configuración de picom optimizada instalada correctamente"
-        show_message "yellow" "  La configuración ha sido optimizada para mejorar el rendimiento"
-        show_message "yellow" "  Si prefieres efectos visuales más avanzados, puedes editar $QTILE_CONFIG_DIR/picom.conf"
+        show_message "green" "✓ Optimized picom configuration installed successfully"
+        show_message "yellow" "  The configuration has been optimized for better performance"
+        show_message "yellow" "  If you prefer more advanced visual effects, you can edit $QTILE_CONFIG_DIR/picom.conf"
     else
-        show_message "red" "✗ Error al configurar permisos de picom.conf"
+        show_message "red" "✗ Error setting picom.conf permissions"
     fi
 fi
 
 # Verify wallpaper exists
 if [ ! -f "./zelda.png" ]; then
-    show_message "red" "✗ Error: No se encontró el archivo de wallpaper zelda.png"
+    show_message "red" "✗ Error: Wallpaper file zelda.png not found"
     exit 1
 fi
 
 # Copy wallpaper
-show_message "yellow" "Copiando wallpaper de Zelda..."
+show_message "yellow" "Copying Zelda wallpaper..."
 if cp ./zelda.png "$QTILE_CONFIG_DIR/wallpaper.png"; then
-    show_message "green" "✓ Wallpaper copiado correctamente"
+    show_message "green" "✓ Wallpaper copied successfully"
 else
-    show_message "red" "✗ Error al copiar el wallpaper"
+    show_message "red" "✗ Error copying wallpaper"
     exit 1
 fi
 
 # Make autostart script executable
-show_message "yellow" "Haciendo ejecutable el script de autostart..."
+show_message "yellow" "Making autostart script executable..."
 if chmod +x "$QTILE_CONFIG_DIR/autostart.sh"; then
-    show_message "green" "✓ Script de autostart ahora es ejecutable"
+    show_message "green" "✓ Autostart script is now executable"
 else
-    show_message "red" "✗ Error al hacer ejecutable el script de autostart"
+    show_message "red" "✗ Error making autostart script executable"
     exit 1
 fi
 
 # Install dependencies
-show_message "yellow" "Instalando dependencias..."
+show_message "yellow" "Installing dependencies..."
 
 # Check if we're on Arch Linux
 if command -v pacman &> /dev/null; then
-    show_message "green" "✓ Detectado Arch Linux, instalando dependencias..."
+    show_message "green" "✓ Detected Arch Linux, installing dependencies..."
     
-    # Lista de paquetes a instalar
+    # List of packages to install
     PACKAGES=("python-pip" "python-xcffib" "python-cairocffi" "python-cffi" "imagemagick" "feh" "picom")
     
-    # Verificar si tenemos sudo
+    # Check if we have sudo
     if command -v sudo &> /dev/null; then
-        show_message "yellow" "Instalando paquetes del sistema (puede solicitar contraseña)..."
+        show_message "yellow" "Installing system packages (may ask for password)..."
         if sudo pacman -S --needed ${PACKAGES[@]}; then
-            show_message "green" "✓ Paquetes del sistema instalados correctamente"
+            show_message "green" "✓ System packages installed successfully"
         else
-            show_message "red" "✗ Error al instalar algunos paquetes del sistema"
-            show_message "yellow" "Continuando con la instalación. Algunos componentes pueden no funcionar correctamente."
+            show_message "red" "✗ Error installing some system packages"
+            show_message "yellow" "Continuing with installation. Some components may not work properly."
         fi
     else
-        show_message "red" "✗ No se encontró el comando sudo. No se pueden instalar dependencias automáticamente."
-        show_message "yellow" "Por favor, instala manualmente los siguientes paquetes:"
+        show_message "red" "✗ sudo command not found. Cannot install dependencies automatically."
+        show_message "yellow" "Please manually install the following packages:"
         for pkg in "${PACKAGES[@]}"; do
             show_message "yellow" "  - $pkg"
         done
     fi
 else
-    show_message "red" "✗ Este script está diseñado para Arch Linux."
-    show_message "yellow" "Por favor, instala manualmente los siguientes paquetes:"
+    show_message "red" "✗ This script is designed for Arch Linux."
+    show_message "yellow" "Please manually install the following packages:"
     show_message "yellow" "  - python-pip"
     show_message "yellow" "  - python-xcffib"
     show_message "yellow" "  - python-cairocffi"
@@ -130,29 +130,29 @@ else
 fi
 
 # Install Python dependencies
-show_message "yellow" "Intentando instalar dependencias de Python..."
+show_message "yellow" "Attempting to install Python dependencies..."
 
-# Función para instalar dependencias de Python
+# Function to install Python dependencies
 install_python_deps() {
     local pip_cmd=$1
     local success=false
     
-    # Intentar instalar con --user primero
+    # Try installing with --user first
     if $pip_cmd install --user psutil; then
         success=true
     else
-        show_message "yellow" "Intentando instalar sin --user..."
+        show_message "yellow" "Trying to install without --user..."
         if $pip_cmd install psutil; then
             success=true
         fi
     fi
     
     if [ "$success" = true ]; then
-        show_message "green" "✓ Dependencias de Python instaladas correctamente"
+        show_message "green" "✓ Python dependencies installed successfully"
     else
-        show_message "red" "✗ Error al instalar dependencias de Python"
-        show_message "yellow" "Puedes instalarlas manualmente con: $pip_cmd install --user psutil"
-        show_message "yellow" "O instalar el paquete del sistema: sudo pacman -S python-psutil"
+        show_message "red" "✗ Error installing Python dependencies"
+        show_message "yellow" "You can install them manually with: $pip_cmd install --user psutil"
+        show_message "yellow" "Or install the system package: sudo pacman -S python-psutil"
     fi
 }
 
@@ -161,16 +161,16 @@ if command -v pip &> /dev/null; then
 elif command -v pip3 &> /dev/null; then
     install_python_deps "pip3"
 else
-    show_message "red" "✗ No se encontró pip. Por favor, instala las dependencias de Python manualmente:"
+    show_message "red" "✗ pip not found. Please install Python dependencies manually:"
     show_message "yellow" "  - psutil (pip install --user psutil)"
-    show_message "yellow" "  - O instala el paquete del sistema: sudo pacman -S python-psutil"
+    show_message "yellow" "  - Or install the system package: sudo pacman -S python-psutil"
 fi
 
 # No Neofetch setup needed
 
-show_message "green" "=== ¡Instalación completada! ==="
-show_message "yellow" "Por favor, cierra sesión y vuelve a iniciar sesión para aplicar el tema Zelda Qtile."
-show_message "yellow" "Alternativamente, puedes reiniciar Qtile presionando Mod+Control+r"
-show_message "yellow" "Si encuentras algún error, consulta la sección 'Troubleshooting Installation' en el README.md"
-show_message "green" "El tema ha sido optimizado para un mejor rendimiento y carga más rápida."
-show_message "yellow" "Si experimentas problemas de rendimiento, consulta la sección 'Performance Optimization' en el README.md"
+show_message "green" "=== Installation complete! ==="
+show_message "yellow" "Please log out and log back in to apply the Zelda Qtile theme."
+show_message "yellow" "Alternatively, you can restart Qtile by pressing Mod+Control+r"
+show_message "yellow" "If you encounter any errors, check the 'Troubleshooting Installation' section in README.md"
+show_message "green" "The theme has been optimized for better performance and faster loading."
+show_message "yellow" "If you experience performance issues, check the 'Performance Optimization' section in README.md"
