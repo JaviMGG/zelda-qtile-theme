@@ -25,7 +25,7 @@ A Legend of Zelda themed configuration for the Qtile window manager on Arch Linu
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/zelda-qtile-theme.git
+   git clone https://github.com/JaviMGG/zelda-qtile-theme.git
    cd zelda-qtile-theme
    ```
 
