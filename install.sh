@@ -32,25 +32,20 @@ echo "Installing dependencies..."
 if command -v pacman &> /dev/null; then
     echo "Detected Arch Linux, installing dependencies..."
     sudo pacman -S --needed python-pip python-xcffib python-cairocffi python-cffi
-    sudo pacman -S --needed neofetch imagemagick
+    sudo pacman -S --needed imagemagick
 else
     echo "This script is designed for Arch Linux. Please install the following packages manually:"
     echo "- python-pip"
     echo "- python-xcffib"
     echo "- python-cairocffi"
     echo "- python-cffi"
-    echo "- neofetch"
     echo "- imagemagick"
 fi
 
 # Install Python dependencies
 pip install --user psutil
 
-# Set up Neofetch with Triforce logo
-echo "Setting up Neofetch with Triforce logo..."
-mkdir -p "$HOME/.config/neofetch"
-cp ./neofetch/config.conf "$HOME/.config/neofetch/"
-cp ./neofetch/triforce.txt "$HOME/.config/neofetch/"
+# No Neofetch setup needed
 
 echo "Installation complete!"
 echo "Please log out and log back in to apply the Zelda Qtile theme."
