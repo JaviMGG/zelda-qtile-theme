@@ -23,16 +23,30 @@ else
     log_message "feh no está instalado. No se puede configurar el wallpaper."
 fi
 
-# Start compositor for transparency effects with custom settings
+# Start compositor for transparency effects with custom settings (optimizado)
 if command -v picom &> /dev/null; then
-    log_message "Iniciando compositor picom con configuración personalizada"
+    log_message "Iniciando compositor picom con configuración optimizada"
     # Usar el archivo de configuración personalizado para picom
     if [ -f "$HOME/.config/qtile/picom.conf" ]; then
+        # Matar cualquier instancia previa de picom
+        pkill picom 2>/dev/null
+        # Iniciar con configuración optimizada
         picom --config "$HOME/.config/qtile/picom.conf" -b || log_message "Error al iniciar picom con configuración personalizada"
     else
-        log_message "No se encontró el archivo de configuración de picom, usando configuración básica"
-        # Configuración para terminales más transparentes y bordes redondeados
-        picom -b --backend glx --corner-radius 4 --round-borders 1 --opacity-rule "85:class_g = 'Alacritty'" --opacity-rule "85:class_g = 'kitty'" --opacity-rule "85:class_g = 'URxvt'" --opacity-rule "85:class_g = 'XTerm'" --opacity-rule "85:class_g = 'st-256color'" --opacity-rule "85:class_g = 'gnome-terminal'" || log_message "Error al iniciar picom con configuración personalizada"
+        log_message "No se encontró el archivo de configuración de picom, usando configuración básica optimizada"
+        # Matar cualquier instancia previa de picom
+        pkill picom 2>/dev/null
+        # Configuración optimizada para mejor rendimiento
+        picom -b --backend xrender --corner-radius 4 --round-borders 1 \
+              --no-fading-openclose \
+              --unredir-if-possible \
+              --opacity-rule "90:class_g = 'Alacritty'" \
+              --opacity-rule "90:class_g = 'kitty'" \
+              --opacity-rule "90:class_g = 'XTerm'" \
+              --use-damage \
+              --glx-no-stencil \
+              --glx-no-rebind-pixmap \
+              || log_message "Error al iniciar picom con configuración optimizada"
     fi
 else
     log_message "picom no está instalado. Los efectos de transparencia no estarán disponibles."
