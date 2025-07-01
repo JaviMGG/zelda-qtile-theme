@@ -23,7 +23,7 @@ cp -r ./config/* "$QTILE_CONFIG_DIR/"
 
 # Copy wallpaper
 echo "Copying Zelda wallpaper..."
-cp ./zelda.jpg "$QTILE_CONFIG_DIR/wallpaper.jpg"
+cp ./zelda.png "$QTILE_CONFIG_DIR/wallpaper.png"
 
 # Install dependencies
 echo "Installing dependencies..."
