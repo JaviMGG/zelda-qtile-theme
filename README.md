@@ -274,7 +274,3 @@ MIT
 
 - The Legend of Zelda is a trademark of Nintendo
 - Qtile window manager: https://qtile.org
-   ```bash
-   chmod +x install.sh
-   ./install.sh
-   ```
