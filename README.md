@@ -35,6 +35,53 @@ A Legend of Zelda themed configuration for the Qtile window manager on Arch Linu
 
 3. Log out and log back in to apply the Qtile configuration, or restart Qtile with `Mod+Control+r`
 
+### Troubleshooting Installation
+
+- **Error "externally-managed-environment"**: Si recibes este error durante la instalación, es porque Python está gestionado por el sistema operativo. Puedes solucionarlo de varias formas:
+
+  1. Instalar las dependencias a través del gestor de paquetes del sistema:
+     ```bash
+     sudo pacman -S python-psutil  # Para Arch Linux
+     ```
+
+  2. Crear un entorno virtual para la instalación:
+     ```bash
+     python -m venv venv
+     source venv/bin/activate  # En Linux
+     # o
+     .\venv\Scripts\activate  # En Windows
+     pip install psutil
+     ```
+
+  3. Forzar la instalación con pip (no recomendado pero funciona en algunos casos):
+     ```bash
+     pip install --break-system-packages psutil
+     ```
+
+- **Permisos**: Asegúrate de que los scripts tienen permisos de ejecución:
+  ```bash
+  chmod +x install.sh
+  chmod +x ~/.config/qtile/autostart.sh
+  ```
+
+- **Dependencias faltantes**: Si algunos componentes no funcionan correctamente, verifica que todas las dependencias estén instaladas:
+  ```bash
+  sudo pacman -S python-pip python-xcffib python-cairocffi python-cffi imagemagick feh picom
+  ```
+
+- **Wallpaper no visible**: Si el wallpaper no se muestra correctamente, verifica que feh esté instalado y que el archivo de wallpaper exista:
+  ```bash
+  sudo pacman -S feh
+  ls -la ~/.config/qtile/wallpaper.png
+  feh --bg-fill ~/.config/qtile/wallpaper.png
+  ```
+
+- **Transparencia no funciona**: Si los efectos de transparencia no funcionan, asegúrate de que picom esté instalado y funcionando:
+  ```bash
+  sudo pacman -S picom
+  picom -b
+  ```
+
 ## Manual Installation
 
 If you prefer to install manually:
