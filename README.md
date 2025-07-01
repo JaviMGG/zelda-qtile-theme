@@ -7,17 +7,19 @@ A Legend of Zelda themed configuration for the Qtile window manager on Arch Linu
 ## Features
 
 - **Zelda-inspired color scheme**: Gold, green, and blue colors reminiscent of the Legend of Zelda series
-- **Rounded window borders**: Terminal windows with yellow borders and 4px radius
-- **Translucent backgrounds**: Semi-transparent terminal and panel backgrounds to showcase your wallpaper
+- **Rounded window borders**: Terminal windows with yellow borders and 4px radius corners
+- **Translucent backgrounds**: Semi-transparent terminal (85% opacity) and panel backgrounds to showcase your wallpaper
 - **Zelda-themed workspace icons**: Themed workspace labels with Zelda-related emojis
+- **Enhanced UI elements**: Widgets with more opaque backgrounds and rounded corners for better visibility
 
 ## Requirements
 
 - Arch Linux
 - Qtile window manager
 - Python 3
-- Picom (for transparency effects)
+- Picom (for transparency effects, rounded corners, and shadows)
 - Feh (for setting wallpaper)
+- python-psutil (for CPU and memory widgets)
 
 ## Installation
 
@@ -112,13 +114,38 @@ If you prefer to install manually:
 
 Replace the `~/.config/qtile/wallpaper.png` file with your preferred Zelda-themed wallpaper.
 
-### Modifying Colors
+### Modifying Colors and Opacity
 
 Edit the color scheme in `~/.config/qtile/config.py` by modifying the `colors` dictionary.
+
+Adjust the opacity of UI elements by modifying these variables in `config.py`:
+
+```python
+# Definir colores con opacidad
+bar_bg = "#1A1A1ACC"  # Negro con 80% de opacidad para la barra
+widget_bg = "#2D2D2DDD"  # Gris oscuro con 87% de opacidad para widgets
+```
+
+You can also change the bar opacity directly:
+
+```python
+opacity=0.95,  # Barra más opaca
+```
 
 ### Workspace Icons
 
 Customize the workspace icons by editing the `groups` list in `~/.config/qtile/config.py`.
+
+### Terminal Transparency and Rounded Corners
+
+The theme includes a custom picom configuration that provides:
+
+- 85% opacity for terminal windows (Alacritty, Kitty, URxvt, XTerm, etc.)
+- 4px rounded corners for all windows
+- Blur effect for transparent windows
+- Shadows for better visual depth
+
+You can adjust these settings in `picom.conf` to your preference.
 
 ## Key Bindings
 
