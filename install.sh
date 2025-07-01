@@ -21,6 +21,10 @@ mkdir -p "$QTILE_CONFIG_DIR"
 echo "Copying Zelda theme configuration files..."
 cp -r ./config/* "$QTILE_CONFIG_DIR/"
 
+# Copy wallpaper
+echo "Copying Zelda wallpaper..."
+cp ./zelda.jpg "$QTILE_CONFIG_DIR/wallpaper.jpg"
+
 # Install dependencies
 echo "Installing dependencies..."
 
