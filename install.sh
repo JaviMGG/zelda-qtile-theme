@@ -55,6 +55,16 @@ else
     exit 1
 fi
 
+# Ensure picom.conf has the right permissions
+show_message "yellow" "Configurando permisos para picom.conf..."
+if [ -f "$QTILE_CONFIG_DIR/picom.conf" ]; then
+    if chmod 644 "$QTILE_CONFIG_DIR/picom.conf"; then
+        show_message "green" "✓ Permisos de picom.conf configurados correctamente"
+    else
+        show_message "red" "✗ Error al configurar permisos de picom.conf"
+    fi
+fi
+
 # Verify wallpaper exists
 if [ ! -f "./zelda.png" ]; then
     show_message "red" "✗ Error: No se encontró el archivo de wallpaper zelda.png"
