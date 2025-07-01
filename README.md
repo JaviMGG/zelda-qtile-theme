@@ -24,9 +24,6 @@ A Legend of Zelda themed configuration for the Qtile window manager on Arch Linu
 - Picom (for transparency effects, rounded corners, and shadows)
 - Feh (for setting wallpaper)
 - python-psutil (for CPU and memory widgets)
-- yay (AUR helper)
-- cmatrix (optional - for matrix effect)
-- chromium (web browser)
 
 ## Installation
 
