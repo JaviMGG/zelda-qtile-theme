@@ -2,13 +2,7 @@
 
 A Legend of Zelda themed configuration for the Qtile window manager on Arch Linux.
 
-<div align="center">
-  <p><strong>Without Terminals</strong></p>
-  <img src="screenshots/zeldaWithoutTerminals.png" alt="Zelda Qtile Theme" width="800"/>
-  
-  <p><strong>With Terminals</strong></p>
-  <img src="screenshots/zeldaWithTerminals.png" alt="Zelda Qtile Theme" width="800"/>
-</div>
+![Zelda Qtile Theme](screenshots/preview.png)
 
 ## Features
 
@@ -32,9 +26,9 @@ A Legend of Zelda themed configuration for the Qtile window manager on Arch Linu
 
 ## Installation
 
-   cd zelda-qtile-theme
-   ```
-
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/JaviMGG/zelda-qtile-theme.git
    cd zelda-qtile-theme
    ```
 
@@ -46,61 +40,64 @@ A Legend of Zelda themed configuration for the Qtile window manager on Arch Linu
 
 3. Log out and log back in to apply the Qtile configuration, or restart Qtile with `Mod+Control+r`
 
-### Troubleshooting Installation
+## Troubleshooting
 
-- **Error "externally-managed-environment"**: Si recibes este error durante la instalación, es porque Python está gestionado por el sistema operativo. Puedes solucionarlo de varias formas:
+### Installation Issues
 
-  1. Instalar las dependencias a través del gestor de paquetes del sistema:
-     ```bash
-     sudo pacman -S python-psutil  # Para Arch Linux
-     ```
+Error "externally-managed-environment": If you receive this error during installation, it's because Python is managed by the operating system. You can solve it in several ways:
 
-  2. Crear un entorno virtual para la instalación:
-     ```bash
-     python -m venv venv
-     source venv/bin/activate  # En Linux
-     # o
-     .\venv\Scripts\activate  # En Windows
-     pip install psutil
-     ```
+1. Install dependencies through the system package manager:
+   ```bash
+   sudo pacman -S python-psutil  # For Arch Linux
+   ```
 
-  3. Forzar la instalación con pip (no recomendado pero funciona en algunos casos):
-     ```bash
-     pip install --break-system-packages psutil
-     ```
+2. Create a virtual environment for the installation:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Linux
+   # or
+   .\venv\Scripts\activate  # On Windows
+   pip install psutil
+   ```
 
-- **Permisos**: Asegúrate de que los scripts tienen permisos de ejecución:
+3. Force installation with pip (not recommended but works in some cases):
+   ```bash
+   pip install --break-system-packages psutil
+   ```
+
+### Other Issues
+
+- **Permissions**: Make sure the scripts have execution permissions:
   ```bash
   chmod +x install.sh
   chmod +x ~/.config/qtile/autostart.sh
   ```
 
-- **Dependencias faltantes**: Si algunos componentes no funcionan correctamente, verifica que todas las dependencias estén instaladas:
+- **Missing dependencies**: If some components don't work correctly, verify that all dependencies are installed:
   ```bash
   sudo pacman -S python-pip python-xcffib python-cairocffi python-cffi imagemagick feh picom
   ```
 
-- **Wallpaper no visible**: Si el wallpaper no se muestra correctamente, verifica que feh esté instalado y que el archivo de wallpaper exista:
+- **Wallpaper not visible**: If the wallpaper doesn't display correctly, verify that feh is installed and the wallpaper file exists:
   ```bash
   sudo pacman -S feh
   ls -la ~/.config/qtile/wallpaper.png
   feh --bg-fill ~/.config/qtile/wallpaper.png
   ```
 
-- **Transparencia no funciona**: Si los efectos de transparencia no funcionan, asegúrate de que picom esté instalado y funcionando:
+- **Transparency not working**: If transparency effects don't work, make sure picom is installed and running:
   ```bash
   sudo pacman -S picom
   picom -b
   ```
 
-- **Rendimiento lento**: Si experimentas lentitud al cargar o usar el tema:
+- **Slow performance**: If you experience slowness when loading or using the theme:
   ```bash
-  # Reiniciar picom con la configuración optimizada
+  # Restart picom with the optimized configuration
   pkill picom
   picom --config ~/.config/qtile/picom.conf -b
   ```
-  
-  También puedes editar el archivo `~/.config/qtile/picom.conf` para desactivar más efectos visuales o ajustar la configuración según tus necesidades.
+  You can also edit the `~/.config/qtile/picom.conf` file to disable more visual effects or adjust the configuration to your needs.
 
 ## Manual Installation
 
@@ -116,8 +113,6 @@ If you prefer to install manually:
    cp -r config/* ~/.config/qtile/
    cp zelda.png ~/.config/qtile/wallpaper.png
    ```
-
-
 
 3. Make the autostart script executable:
    ```bash
@@ -136,18 +131,16 @@ Replace the `~/.config/qtile/wallpaper.png` file with your preferred Zelda-theme
 
 Edit the color scheme in `~/.config/qtile/config.py` by modifying the `colors` dictionary.
 
-Adjust the opacity of UI elements by modifying these variables in `config.py`:
-
+Adjust the opacity of UI elements by modifying these variables in config.py:
 ```python
-# Definir colores con opacidad
-bar_bg = "#1A1A1ACC"  # Negro con 80% de opacidad para la barra
-widget_bg = "#2D2D2DDD"  # Gris oscuro con 87% de opacidad para widgets
+# Define colors with opacity
+bar_bg = "#1A1A1ACC"  # Black with 80% opacity for the bar
+widget_bg = "#2D2D2DDD"  # Dark gray with 87% opacity for widgets
 ```
 
 You can also change the bar opacity directly:
-
 ```python
-opacity=0.95,  # Barra más opaca
+opacity=0.95,  # More opaque bar
 ```
 
 ### Workspace Icons
@@ -162,7 +155,7 @@ The theme includes a custom picom configuration that provides:
 - 4px rounded corners for all windows
 - Performance-optimized settings for faster loading
 
-You can adjust these settings in `picom.conf` to your preference.
+You can adjust these settings in picom.conf to your preference.
 
 ### Performance Optimization
 
@@ -174,7 +167,7 @@ The picom configuration has been optimized for better performance:
 - Backend set to xrender instead of glx for lighter resource usage
 - Fading transitions optimized for speed
 
-If you experience slow loading or performance issues, these optimizations should help. If you prefer visual effects over performance, you can re-enable these features in `picom.conf`.
+If you experience slow loading or performance issues, these optimizations should help. If you prefer visual effects over performance, you can re-enable these features in picom.conf.
 
 ## Key Bindings
 
@@ -195,76 +188,17 @@ If you experience slow loading or performance issues, these optimizations should
 ```
 .
 ├── config/
-│   ├── config.py         # Main Qtile configuration
-│   └── autostart.sh      # Autostart script
+│   ├── config.py                       # Main Qtile configuration
+│   ├── autostart.sh                    # Autostart script
+│   └── picom.conf                      # Picom compositor configuration
 ├── screenshots/
-│   └── preview.png      # Theme preview
-├── zelda.png            # Wallpaper image
-├── install.sh           # Installation script
-└── README.md            # This file
+│   └── zeldaWithTerminals.png          # Theme preview
+│   └── zeldaWithoutTerminals.png       # Theme preview
+├── zelda.png                           # Wallpaper image
+├── install.sh                          # Installation script
+├── requirements.txt                    # Python dependencies
+└── README.md                           # This file
 ```
-
-## Methods Documentation
-
-### config.py
-
-#### `lazy.layout.left()`, `lazy.layout.right()`, `lazy.layout.up()`, `lazy.layout.down()`
-Navigate between windows in the specified direction.
-
-#### `lazy.layout.shuffle_left()`, `lazy.layout.shuffle_right()`, `lazy.layout.shuffle_up()`, `lazy.layout.shuffle_down()`
-Move the current window in the specified direction.
-
-#### `lazy.layout.grow_left()`, `lazy.layout.grow_right()`, `lazy.layout.grow_up()`, `lazy.layout.grow_down()`
-Resize the current window in the specified direction.
-
-#### `lazy.layout.normalize()`
-Reset all window sizes to their default values.
-
-#### `lazy.next_layout()`
-Cycle to the next available layout.
-
-#### `lazy.window.kill()`
-Close the focused window.
-
-#### `lazy.restart()`
-Restart the Qtile window manager without logging out.
-
-#### `lazy.shutdown()`
-Quit Qtile and return to the login manager.
-
-#### `lazy.spawncmd()`
-Show a command prompt to run a command.
-
-#### `lazy.spawn(cmd)`
-Run the specified command.
-
-#### `lazy.window.togroup(group_name, switch_group=True)`
-Move the current window to the specified group and optionally switch to that group.
-
-#### `autostart()`
-Hook function that runs once when Qtile starts. It executes the autostart.sh script.
-
-### autostart.sh
-
-#### Setting wallpaper with feh
-Uses feh to set the desktop wallpaper.
-
-#### Starting picom
-Launches the picom compositor for transparency effects.
-
-#### Starting system tray applications
-Launches various system tray applications like network manager, volume control, etc.
-
-### install.sh
-
-#### Backup creation
-Creates a backup of the existing Qtile configuration.
-
-#### File copying
-Copies the theme files to the appropriate locations.
-
-#### Dependency installation
-Installs required dependencies using pacman on Arch Linux.
 
 ## License
 
