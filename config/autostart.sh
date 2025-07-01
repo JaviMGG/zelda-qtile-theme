@@ -5,7 +5,7 @@
 
 # Set wallpaper
 if command -v feh &> /dev/null; then
-    feh --bg-fill ~/.config/qtile/wallpaper.jpg
+    feh --bg-fill ~/.config/qtile/wallpaper.png
 fi
 
 # Start compositor for transparency effects
