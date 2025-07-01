@@ -55,11 +55,13 @@ else
     exit 1
 fi
 
-# Ensure picom.conf has the right permissions
-show_message "yellow" "Configurando permisos para picom.conf..."
+# Ensure picom.conf has the right permissions and inform about optimizations
+show_message "yellow" "Configurando picom.conf optimizado para mejor rendimiento..."
 if [ -f "$QTILE_CONFIG_DIR/picom.conf" ]; then
     if chmod 644 "$QTILE_CONFIG_DIR/picom.conf"; then
-        show_message "green" "✓ Permisos de picom.conf configurados correctamente"
+        show_message "green" "✓ Configuración de picom optimizada instalada correctamente"
+        show_message "yellow" "  La configuración ha sido optimizada para mejorar el rendimiento"
+        show_message "yellow" "  Si prefieres efectos visuales más avanzados, puedes editar $QTILE_CONFIG_DIR/picom.conf"
     else
         show_message "red" "✗ Error al configurar permisos de picom.conf"
     fi
@@ -170,3 +172,5 @@ show_message "green" "=== ¡Instalación completada! ==="
 show_message "yellow" "Por favor, cierra sesión y vuelve a iniciar sesión para aplicar el tema Zelda Qtile."
 show_message "yellow" "Alternativamente, puedes reiniciar Qtile presionando Mod+Control+r"
 show_message "yellow" "Si encuentras algún error, consulta la sección 'Troubleshooting Installation' en el README.md"
+show_message "green" "El tema ha sido optimizado para un mejor rendimiento y carga más rápida."
+show_message "yellow" "Si experimentas problemas de rendimiento, consulta la sección 'Performance Optimization' en el README.md"
