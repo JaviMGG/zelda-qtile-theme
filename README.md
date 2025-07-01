@@ -2,10 +2,10 @@
 
 A Legend of Zelda themed configuration for the Qtile window manager on Arch Linux.
 
-### Clean Desktop View
+## Clean Desktop View
 <img src="screenshots/zeldaWithoutTerminals.png" width="800" alt="Zelda Qtile Theme without Terminals">
 
-### Theme Preview with Terminals
+## Theme Preview with Terminals
 <img src="screenshots/zeldaWithTerminals.png" width="800" alt="Zelda Qtile Theme with Terminals">
 
 ## Features
