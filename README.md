@@ -46,9 +46,10 @@ If you prefer to install manually:
    cp -r ~/.config/qtile ~/.config/qtile.backup
    ```
 
-2. Copy the configuration files:
+2. Copy the configuration files and wallpaper:
    ```bash
    cp -r config/* ~/.config/qtile/
+   cp zelda.png ~/.config/qtile/wallpaper.png
    ```
 
 3. Set up Neofetch with the Triforce logo:
@@ -69,7 +70,7 @@ If you prefer to install manually:
 
 ### Changing the Wallpaper
 
-Replace the `~/.config/qtile/wallpaper.jpg` file with your preferred Zelda-themed wallpaper.
+Replace the `~/.config/qtile/wallpaper.png` file with your preferred Zelda-themed wallpaper.
 
 ### Modifying Colors
 
@@ -105,6 +106,7 @@ Customize the workspace icons by editing the `groups` list in `~/.config/qtile/c
 │   └── triforce.txt     # Triforce ASCII art
 ├── screenshots/
 │   └── preview.png      # Theme preview
+├── zelda.png            # Wallpaper image
 ├── install.sh           # Installation script
 └── README.md            # This file
 ```
