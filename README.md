@@ -84,6 +84,15 @@ A Legend of Zelda themed configuration for the Qtile window manager on Arch Linu
   picom -b
   ```
 
+- **Rendimiento lento**: Si experimentas lentitud al cargar o usar el tema:
+  ```bash
+  # Reiniciar picom con la configuración optimizada
+  pkill picom
+  picom --config ~/.config/qtile/picom.conf -b
+  ```
+  
+  También puedes editar el archivo `~/.config/qtile/picom.conf` para desactivar más efectos visuales o ajustar la configuración según tus necesidades.
+
 ## Manual Installation
 
 If you prefer to install manually:
@@ -140,12 +149,23 @@ Customize the workspace icons by editing the `groups` list in `~/.config/qtile/c
 
 The theme includes a custom picom configuration that provides:
 
-- 85% opacity for terminal windows (Alacritty, Kitty, URxvt, XTerm, etc.)
+- 90% opacity for terminal windows (Alacritty, Kitty, XTerm, etc.)
 - 4px rounded corners for all windows
-- Blur effect for transparent windows
-- Shadows for better visual depth
+- Performance-optimized settings for faster loading
 
 You can adjust these settings in `picom.conf` to your preference.
+
+### Performance Optimization
+
+The picom configuration has been optimized for better performance:
+
+- Animations disabled to reduce CPU usage
+- Shadows disabled to improve rendering speed
+- Blur effects disabled for better performance
+- Backend set to xrender instead of glx for lighter resource usage
+- Fading transitions optimized for speed
+
+If you experience slow loading or performance issues, these optimizations should help. If you prefer visual effects over performance, you can re-enable these features in `picom.conf`.
 
 ## Key Bindings
 
