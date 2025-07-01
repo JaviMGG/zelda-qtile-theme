@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # Zelda-themed Qtile Configuration
 # A Qtile configuration with Legend of Zelda theme
 
@@ -117,9 +115,9 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-# Definir colores con opacidad
-bar_bg = "#1A1A1ACC"  # Negro con 80% de opacidad para la barra
-widget_bg = "#2D2D2DDD"  # Gris oscuro con 87% de opacidad para widgets
+# Define colors with opacity
+bar_bg = "#1A1A1ACC"     # Black with 80% opacity for the bar
+widget_bg = "#2D2D2DDD"  # Dark gray with 87% opacity for widgets
 
 screens = [
     Screen(
@@ -127,7 +125,7 @@ screens = [
             [
                 widget.CurrentLayout(
                     foreground=colors["triforce_gold"],
-                    background=widget_bg,  # Fondo más opaco para widgets
+                    background=widget_bg,  # More opaque background for widgets
                     padding=5,
                 ),
                 widget.GroupBox(
@@ -136,50 +134,50 @@ screens = [
                     highlight_method="line",
                     highlight_color=[colors["hyrule_green"], colors["link_tunic"]],
                     this_current_screen_border=colors["triforce_gold"],
-                    background=widget_bg,  # Fondo más opaco para widgets
+                    background=widget_bg,  # More opaque background for widgets
                     padding=3,
                     borderwidth=2,
-                    rounded=True,  # Bordes redondeados para GroupBox
+                    rounded=True,          # Rounded borders for GroupBox
                 ),
                 widget.Prompt(
                     foreground=colors["triforce_gold"],
-                    background=widget_bg,  # Fondo más opaco para widgets
+                    background=widget_bg,  # More opaque background for widgets
                 ),
                 widget.WindowName(
                     foreground=colors["triforce_gold"],
-                    background=bar_bg,  # Fondo menos opaco para el nombre de ventana
+                    background=bar_bg,     # Less opaque background for window name
                 ),
                 widget.Chord(
                     chords_colors={
                         "launch": (colors["ganon_purple"], colors["white"]),
                     },
                     name_transform=lambda name: name.upper(),
-                    background=widget_bg,  # Fondo más opaco para widgets
+                    background=widget_bg,  # More opaque background for widgets
                 ),
                 widget.Systray(
-                    background=widget_bg,  # Fondo más opaco para widgets
+                    background=widget_bg,  # More opaque background for widgets
                     padding=5,
                 ),
                 widget.Clock(
                     format="%Y-%m-%d %a %I:%M %p", 
                     foreground=colors["triforce_gold"],
-                    background=widget_bg,  # Fondo más opaco para widgets
+                    background=widget_bg,  # More opaque background for widgets
                     padding=5,
                 ),
                 widget.QuickExit(
                     foreground=colors["triforce_gold"], 
                     default_text="[Exit]",
-                    background=widget_bg,  # Fondo más opaco para widgets
+                    background=widget_bg,  # More opaque background for widgets
                     padding=5,
                 ),
             ],
             24,
-            opacity=0.95,  # Barra más opaca
-            background=bar_bg,  # Fondo con opacidad para la barra
-            margin=[4, 6, 0, 6],  # Margen [arriba, derecha, abajo, izquierda]
-            border_width=[0, 0, 2, 0],  # Borde solo en la parte inferior
+            opacity=0.95,                # More opaque bar
+            background=bar_bg,           # Background with opacity for the bar
+            margin=[4, 6, 0, 6],         # Margin [top, right, bottom, left]
+            border_width=[0, 0, 2, 0],   # Border only on the bottom
             border_color=["#00000000", "#00000000", colors["triforce_gold"], "#00000000"],
-            rounded=True,  # Bordes redondeados para la barra
+            rounded=True,                # Rounded borders for the bar
         ),
     ),
 ]
@@ -203,12 +201,12 @@ floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
-        Match(wm_class="confirmreset"),  # gitk
-        Match(wm_class="makebranch"),  # gitk
-        Match(wm_class="maketag"),  # gitk
-        Match(wm_class="ssh-askpass"),  # ssh-askpass
-        Match(title="branchdialog"),  # gitk
-        Match(title="pinentry"),  # GPG key password entry
+        Match(wm_class="confirmreset"),     # gitk
+        Match(wm_class="makebranch"),       # gitk
+        Match(wm_class="maketag"),          # gitk
+        Match(wm_class="ssh-askpass"),      # ssh-askpass
+        Match(title="branchdialog"),        # gitk
+        Match(title="pinentry"),            # GPG key password entry
     ],
     **layout_theme
 )
