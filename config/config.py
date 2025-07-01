@@ -117,33 +117,69 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+# Definir colores con opacidad
+bar_bg = "#1A1A1ACC"  # Negro con 80% de opacidad para la barra
+widget_bg = "#2D2D2DDD"  # Gris oscuro con 87% de opacidad para widgets
+
 screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(foreground=colors["triforce_gold"]),
+                widget.CurrentLayout(
+                    foreground=colors["triforce_gold"],
+                    background=widget_bg,  # Fondo más opaco para widgets
+                    padding=5,
+                ),
                 widget.GroupBox(
                     active=colors["triforce_gold"],
                     inactive=colors["zelda_blue"],
                     highlight_method="line",
                     highlight_color=[colors["hyrule_green"], colors["link_tunic"]],
                     this_current_screen_border=colors["triforce_gold"],
+                    background=widget_bg,  # Fondo más opaco para widgets
+                    padding=3,
+                    borderwidth=2,
+                    rounded=True,  # Bordes redondeados para GroupBox
                 ),
-                widget.Prompt(foreground=colors["triforce_gold"]),
-                widget.WindowName(foreground=colors["triforce_gold"]),
+                widget.Prompt(
+                    foreground=colors["triforce_gold"],
+                    background=widget_bg,  # Fondo más opaco para widgets
+                ),
+                widget.WindowName(
+                    foreground=colors["triforce_gold"],
+                    background=bar_bg,  # Fondo menos opaco para el nombre de ventana
+                ),
                 widget.Chord(
                     chords_colors={
                         "launch": (colors["ganon_purple"], colors["white"]),
                     },
                     name_transform=lambda name: name.upper(),
+                    background=widget_bg,  # Fondo más opaco para widgets
                 ),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p", foreground=colors["triforce_gold"]),
-                widget.QuickExit(foreground=colors["triforce_gold"], default_text="[Exit]"),
+                widget.Systray(
+                    background=widget_bg,  # Fondo más opaco para widgets
+                    padding=5,
+                ),
+                widget.Clock(
+                    format="%Y-%m-%d %a %I:%M %p", 
+                    foreground=colors["triforce_gold"],
+                    background=widget_bg,  # Fondo más opaco para widgets
+                    padding=5,
+                ),
+                widget.QuickExit(
+                    foreground=colors["triforce_gold"], 
+                    default_text="[Exit]",
+                    background=widget_bg,  # Fondo más opaco para widgets
+                    padding=5,
+                ),
             ],
             24,
-            opacity=0.8,  # Translucent bar
-            background=colors["transparent"],  # Transparent background
+            opacity=0.95,  # Barra más opaca
+            background=bar_bg,  # Fondo con opacidad para la barra
+            margin=[4, 6, 0, 6],  # Margen [arriba, derecha, abajo, izquierda]
+            border_width=[0, 0, 2, 0],  # Borde solo en la parte inferior
+            border_color=["#00000000", "#00000000", colors["triforce_gold"], "#00000000"],
+            rounded=True,  # Bordes redondeados para la barra
         ),
     ),
 ]
