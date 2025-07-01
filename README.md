@@ -9,7 +9,6 @@ A Legend of Zelda themed configuration for the Qtile window manager on Arch Linu
 - **Zelda-inspired color scheme**: Gold, green, and blue colors reminiscent of the Legend of Zelda series
 - **Rounded window borders**: Terminal windows with yellow borders and 4px radius
 - **Translucent backgrounds**: Semi-transparent terminal and panel backgrounds to showcase your wallpaper
-- **Triforce Neofetch**: Custom Triforce ASCII art for Neofetch
 - **Zelda-themed workspace icons**: Themed workspace labels with Zelda-related emojis
 
 ## Requirements
@@ -17,7 +16,6 @@ A Legend of Zelda themed configuration for the Qtile window manager on Arch Linu
 - Arch Linux
 - Qtile window manager
 - Python 3
-- Neofetch
 - Picom (for transparency effects)
 - Feh (for setting wallpaper)
 
@@ -25,7 +23,7 @@ A Legend of Zelda themed configuration for the Qtile window manager on Arch Linu
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/JaviMGG/zelda-qtile-theme.git
+   git clone https://github.com/yourusername/zelda-qtile-theme.git
    cd zelda-qtile-theme
    ```
 
@@ -52,19 +50,14 @@ If you prefer to install manually:
    cp zelda.png ~/.config/qtile/wallpaper.png
    ```
 
-3. Set up Neofetch with the Triforce logo:
-   ```bash
-   mkdir -p ~/.config/neofetch
-   cp neofetch/config.conf ~/.config/neofetch/
-   cp neofetch/triforce.txt ~/.config/neofetch/
-   ```
 
-4. Make the autostart script executable:
+
+3. Make the autostart script executable:
    ```bash
    chmod +x ~/.config/qtile/autostart.sh
    ```
 
-5. Log out and log back in, or restart Qtile with `Mod+Control+r`
+4. Log out and log back in, or restart Qtile with `Mod+Control+r`
 
 ## Customization
 
@@ -101,9 +94,6 @@ Customize the workspace icons by editing the `groups` list in `~/.config/qtile/c
 ├── config/
 │   ├── config.py         # Main Qtile configuration
 │   └── autostart.sh      # Autostart script
-├── neofetch/
-│   ├── config.conf      # Neofetch configuration
-│   └── triforce.txt     # Triforce ASCII art
 ├── screenshots/
 │   └── preview.png      # Theme preview
 ├── zelda.png            # Wallpaper image
@@ -181,4 +171,3 @@ MIT
 
 - The Legend of Zelda is a trademark of Nintendo
 - Qtile window manager: https://qtile.org
-- Neofetch: https://github.com/dylanaraps/neofetch
