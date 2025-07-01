@@ -1,0 +1,10 @@
+# Python dependencies for Zelda Qtile Theme
+
+# Qtile dependencies
+qtile>=0.18.0
+python-xcffib>=0.11.1
+python-cairocffi>=1.4.0
+python-cffi>=1.15.0
+
+# Additional dependencies
+psutil>=5.9.0  # For system monitoring widgets
